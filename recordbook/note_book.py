@@ -1,9 +1,7 @@
 from recordbook.note_classes import NoteRecord, Note, Tag, n_book
 from recordbook.decorator import input_error
 from datetime import datetime
-from recordbook.cl_interface import ConsoleInterface
-
-cli = ConsoleInterface()
+from recordbook.cl_interface import cli
 
 
 @input_error

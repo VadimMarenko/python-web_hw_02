@@ -8,7 +8,7 @@ from rich.console import Console
 
 
 class ConsoleInterface(AbstractUserInterface):
-    def display_contacts(self, arg, book: AddressBook):
+    def display_contacts(self, book: AddressBook, arg=6):
         if len(book.data) == 0:
             return "The database is empty"
         else:
@@ -34,19 +34,15 @@ class ConsoleInterface(AbstractUserInterface):
             ]
             console.print(table)
 
-    def display_notes(self, n_book: NoteBook):
+    def display_notes(self, n_book: NoteBook, args=6):
         if len(n_book.data) == 0:
             return f"The database is empty"
-        # if args[0].startswith("/") and args[0][1:].isdigit():
-        #     args = int(args[0][1:])
-        # else:
-        args = 5
-        for page, rec in enumerate(n_book.iterator(args), 1):
+
+        for page, rec in enumerate(n_book.iterator(args), 0):
             print(f"Page {page}\n")
 
         table = Table(box=box.DOUBLE)
         table.add_column("Num", justify="center", style="green", no_wrap=True)
-        # table.add_column("Key", justify="center", style="green", no_wrap=True)
         table.add_column("Note", justify="center", style="yellow", no_wrap=True)
         table.add_column("Tag", justify="center", style="red", no_wrap=True)
         table.add_column("Date", justify="center", style="blue", no_wrap=True)
@@ -75,7 +71,6 @@ class ConsoleInterface(AbstractUserInterface):
         table = Table(box=box.DOUBLE)
         table.add_column("Num", justify="center", style="green", no_wrap=True)
         table.add_column("Tag / Note", justify="left", style="green", no_wrap=True)
-        # table.add_column("Key", justify="center", style="green", no_wrap=True)
         table.add_column("Date", justify="center", style="blue", no_wrap=True)
 
         console = Console()
@@ -90,7 +85,7 @@ class ConsoleInterface(AbstractUserInterface):
         ]
         console.print(table)
 
-    def display_help(self, commands):
+    def display_help(self, commands="all"):
         help_navigation = """[bold red]help all[/bold red] - виводить всю довідку на екран
     [bold red]help contact[/bold red] - довідка по командам адресної книги
     [bold red]help note[/bold red] - довідка по командам нотаток
@@ -133,7 +128,7 @@ class ConsoleInterface(AbstractUserInterface):
     [bold red]note show[/bold red] - здійснює посторінковий вивід всіх нотаток
         example >> [bold blue]note show /10[/bold blue]
     [bold red]note sort[/bold red] - здійснює сортування записів нотаток за тегами
-        example >> [bold blue]note sort /10[/bold blue]"""
+        example >> [bold blue]note sort <tag>[/bold blue]"""
         sort = """[bold red]sort dir[/bold red] - виконує сортування файлів в указаній папці
         example >> [bold blue]sort dir <Path_to_folder>[/bold blue]"""
 
@@ -149,6 +144,4 @@ class ConsoleInterface(AbstractUserInterface):
         return help_navigation
 
 
-if __name__ == "__main__":
-    ci = ConsoleInterface()
-    print(ci.display_contacts(book))
+cli = ConsoleInterface()

@@ -41,15 +41,15 @@ def func_add_rec(*args):
 # =========================================================
 @input_error
 def add_phone(*args):
-    """Функція додає новий телефоном до існуючого запису особи
+    """Функція додає новий телефон до існуючого запису особи
 
     example >> add phone Mike +380509998877"""
     if args and (len(args) >= 2):
         if args[0].capitalize() in book.keys():
             rec = book[args[0].capitalize()]
-            if book[args[0].capitalize()].phones[0].value == "None":
+            if not rec.phones:
                 book[args[0].capitalize()].phones.clear()
-            return rec.add_phone(Phone(args[2]))
+            return rec.add_phone(Phone(args[1]))
         else:
             return f"The person [bold red]{args[0].capitalize()}[/bold red] isn't in a database"
     else:
@@ -116,7 +116,7 @@ def func_show_all(args) -> str:
     example >> show all /N
     де N - кількість записів на сторінку"""
 
-    cli.display_contacts(args, book)
+    cli.display_contacts(book, args)
     return ""
 
 
@@ -128,25 +128,10 @@ def func_show_all(args) -> str:
 @input_error
 def func_book_pages(*args):
     """Команда "show book" друкує книгу контактів по N записів
+
      >> show book /N
     де N - це кількість записів на одній сторінці"""
-
-    n = int(re.sub("\D", "", args[0]))
-    n_page = 0
-    for batch in book._record_generator(N=n):
-        n_page += 1
-        print(f"{'='*14} Page # [bold red]{n_page}[/bold red] {'='*16}")
-        for record in batch:
-            print(
-                "\n".join(
-                    [
-                        f"{record.name.value}|{record.birthday.value}|{', '.join(map(lambda phone: phone.value, record.phones))}"
-                    ]
-                )
-            )
-        print("=" * 40)
-        print("Press [bold red]Enter [/bold red]", end="")
-        input("to continue next page...")
+    cli.display_contacts(book, args)
     return f"End of the book"
 
 
@@ -155,7 +140,7 @@ def func_book_pages(*args):
 # Отвечает в консоль "How can I help you?"
 # =========================================================
 @input_error
-def func_greeting(_):
+def func_greeting(*args):
     return "How can I help you?"
 
 

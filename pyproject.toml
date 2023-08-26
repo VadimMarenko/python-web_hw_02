@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "recordbook"
-version = "0.6.0"
+version = "0.6.1"
 description = "Command line bot-assistant"
 authors = ["VadimMarenko <130446385+VadimMarenko@users.noreply.github.com>"]
 license = "MIT License"

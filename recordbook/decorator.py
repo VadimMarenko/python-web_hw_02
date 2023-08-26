@@ -10,22 +10,21 @@ def input_error(func):
             result = func(*args)
 
         except BirthdayException as e:
-            result = e
+            result = f"{e}\n {func.__doc__}"
         except PhoneException as e:
-            result = e
+            result = f"{e}\n {func.__doc__}"
         except EmailException as e:
-            result = e
+            result = f"{e}\n {func.__doc__}"
         except FileNotFoundError:
-            result = "The database is not found"
+            result = f"The database is not found\n {func.__doc__}"
         except ValueError:
-            result = "Incorect data or unsupported format while writing to the file"
+            result = f"Incorect data or unsupported format while writing to the file\n {func.__doc__}"
         except KeyError:
-            result = "Record is not in the database"
+            result = f"Record is not in the database\n {func.__doc__}"
         except TypeError:
-            result = "Incorect data"
+            result = f"Incorect data\n {func.__doc__}"
         except IndexError:
-            if "note_show" in str(func):
-                result = "Enter the number of lines per page"
+            result = func.__doc__
         return result
 
     return inner

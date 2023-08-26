@@ -34,16 +34,15 @@ from recordbook.note_book import (
 from recordbook.clean import sort_main
 from rich import print
 
-from recordbook.cl_interface import ConsoleInterface
+from recordbook.cl_interface import cli
 
-cli = ConsoleInterface()
 
 path_book = "data_12.bin"
 path_note = "n_book.json"
 
 
 def func_help(*args):
-    return cli.display_help(args[0])
+    return cli.display_help(args)
 
 
 # =========================================================
@@ -64,7 +63,7 @@ def clear_screen(_):
 
 
 def no_command(*args):
-    return f"Unknown command. {help(all)}"
+    return f"Unknown command {cli.display_help()}"
 
 
 COMMANDS = {

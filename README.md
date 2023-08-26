@@ -1,2 +1,2 @@
-# python-web_uml
+# python-web_hw_02
 

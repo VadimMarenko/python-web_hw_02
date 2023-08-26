@@ -77,17 +77,22 @@ class Birthday(Field):
 
     @value.setter
     def value(self, value: str):
-        # print(value)
+        self.__value = Birthday.__test_date(value)
+
+    @staticmethod
+    def __test_date(value):
         if value.lower() == "none":
-            self.__value = "None"
+            return "None"
         else:
-            pattern = (
-                r"^\d{2}(\.|\-|\/)\d{2}\1\d{4}$"  # дозволені дати формату DD.MM.YYYY
-            )
-            if re.match(pattern, value):  # альтернатива для крапки: "-" "/"
-                self.__value = re.sub(
-                    "[-/]", ".", value
-                )  # комбінувати символи ЗАБОРОНЕНО DD.MM-YYYY
+            pattern = r"^\d{2}(\.|\-|\/)\d{2}\1\d{4}$"
+            if re.match(pattern, value):
+                value = re.sub("[-/]", ".", value)
+            try:
+                return datetime.strptime(value, "%d.%m.%Y").date()
+            except ValueError as e:
+                raise BirthdayException(
+                    f"{e} \nPlease enter the date in the format dd.mm.yyyy."
+                )
 
 
 class Address(Field):
