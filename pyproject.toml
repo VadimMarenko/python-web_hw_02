@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "recordbook"
+version = "0.6.0"
+description = "Command line bot-assistant"
+authors = ["VadimMarenko <130446385+VadimMarenko@users.noreply.github.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9.7"
+rich = "^13.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+recordbook = "recordbook.main:main"
