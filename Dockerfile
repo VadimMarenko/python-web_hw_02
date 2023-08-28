@@ -1,6 +1,6 @@
 # Docker-команда FROM вказує базовий образ контейнера
-# Наш базовий образ - це Linux з попередньо встановленим python-3.11
-FROM python:3.11
+# Наш базовий образ - це Linux з попередньо встановленим python-3.10
+FROM python:3.9.7
 
 # Встановимо змінну середовища
 ENV APP_HOME /app
@@ -18,4 +18,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Запустимо наш застосунок всередині контейнера
-ENTRYPOINT ["python", "recordbook/main.py"]
+ENTRYPOINT ["python", "-m", "recordbook.main"]
