@@ -35,14 +35,15 @@ from recordbook.clean import sort_main
 from rich import print
 
 from recordbook.cl_interface import cli
-
+from recordbook.decorator import input_error
 
 path_book = "data_12.bin"
 path_note = "n_book.json"
 
 
+@input_error
 def func_help(*args):
-    return cli.display_help(args)
+    return cli.display_help(*args)
 
 
 # =========================================================

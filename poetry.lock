@@ -73,5 +73,5 @@ jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9.7"
-content-hash = "ce8464e80915ba13282d4cc60eeeac7424faa013d2dd0c1ce36584babc6496b2"
+python-versions = "^3.11"
+content-hash = "a8d9adc38f5f3d266287fc2bb6901cb225d23a0ebc8cc9eb18655d941da8e5b0"
