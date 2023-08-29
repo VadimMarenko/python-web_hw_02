@@ -4,8 +4,6 @@ build/
 *egg-info*
 *.py[cod]
 *eggs*
-*.bin
-*.json
 *.venv
 *__pycache__/
 
