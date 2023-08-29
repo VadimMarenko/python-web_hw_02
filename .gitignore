@@ -6,7 +6,6 @@ build/
 *eggs*
 *.bin
 *.json
-*.txt
 *.venv
 *__pycache__/
 
